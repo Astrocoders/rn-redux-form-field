@@ -4,25 +4,45 @@ import {
   Label,
   Item,
 } from 'native-base'
+import {
+  compose,
+  pure,
+} from 'recompose'
 import { Field as ReduxField } from 'redux-form/immutable'
 
-function Field({input, label, type, meta, labelStyle = {}, last = false, ...props}){
+function Field({
+  input, 
+  label, 
+  type, 
+  meta, 
+  labelStyle = {}, 
+  ...props
+}){
+  const hasError = meta.touched && Boolean(meta.error)
+
   return (
-    <Item floatingLabel last>
+    <Item
+      floatingLabel={props.floatingLabel}
+      stackedLabel={props.stackedLabel}
+      last={props.last}
+      error={hasError}
+      success={!hasError}
+    >
       <Label
         style={labelStyle}
       >
-        {label}
+        {label} {hasError ? `(${meta.error})` : ''}
       </Label>
       <Input
         {...input}
         {...props}
+        value={input.value || props.defaultValue}
       />
     </Item>
   )
 }
 
-export default function ReduxFieldContainer(props){
+function ReduxFieldContainer(props){
   return (
     <ReduxField
       {...props}
@@ -30,3 +50,7 @@ export default function ReduxFieldContainer(props){
     />
   )
 }
+
+export default compose(
+  pure,
+)(ReduxFieldContainer)
