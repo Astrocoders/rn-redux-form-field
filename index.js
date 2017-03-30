@@ -6,9 +6,9 @@ import {
 } from 'native-base'
 import { Field as ReduxField } from 'redux-form/immutable'
 
-function Field({input, label, type, meta, labelStyle = {}, ...props}){
+function Field({input, label, type, meta, labelStyle = {}, last = false, ...props}){
   return (
-    <Item floatingLabel>
+    <Item floatingLabel last>
       <Label
         style={labelStyle}
       >
