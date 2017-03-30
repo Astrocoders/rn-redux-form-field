@@ -1,0 +1,9 @@
+{
+  "name": "@astrocoders/rn-redux-form-field",
+  "version": "1.0.0-beta.2",
+  "description": "A Field wrapper using Native Base components",
+  "main": "index.js",
+  "repository": "git@github.com:Astrocoders/rn-redux-form-field.git",
+  "author": "Gabriel Rubens <grsabreu@gmail.com>",
+  "license": "MIT"
+}
